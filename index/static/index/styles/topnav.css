@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .login {
+    float: right;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    color: white;
+  }
+
+.logout {
+  margin-top: 13px;
+  background-color: black;
+  border: none;
+  color: white;
+  text-align: center;
+  margin-left: 25px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+
+}
+.logout:hover {
+  background-color: white;
+  color: black;
+}
+.avatar {
+  vertical-align: middle;
+  border-radius: 50%;
+}
+.avatar:hover > .overlay{
+  width:100%;
+  height:100%;
+  position:absolute;
+  background-color:#000;
+  opacity:0.5;
+  border-radius:30px;
+}
+/*
+#post-hover{
+  visibility: hidden;
+}
+
+#create-post:hover ~ #post-hover{
+  visibility: visible;
+  font-size: 10px;
+} */
+
+*{
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.wrapper .post-icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .post-icon:hover{
+  width: 200px;
+}
+.wrapper .post-icon .icon {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: right;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .post-icon:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .post-icon .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .post-icon:hover .icon i{
+  color: #fff;
+}
+.wrapper .post-icon span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .post-icon:nth-child(1) span{
+  color: #4267B2;
+}

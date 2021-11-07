@@ -1,0 +1,36 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+    <title>Home Page</title>
+    <img class="header_img" src="{% static 'index/images/headimg.jpg' %}" width="1334" height="710" 
+        style="padding-top: 5px;">
+    <hr class="header_hr">
+
+    &nbsp;&nbsp;
+
+    <div class="content">
+        <a href="play/" style="text-decoration: none;">
+            <div class="play">
+            <img class="content_img" src="{% static 'index/images/playimg.jpg' %}" width="250" height="250">
+            <h1>Play</h1>
+            <p>Click here to join the fun!</p>
+        </div></a>
+        <a href="signup/" style="text-decoration: none;">
+            <div class="join">
+            <img class="content_img" src="{% static 'index/images/joinus.jpg' %}" width="250" height="250">
+            <h1>Join Us</h1>
+            <p>Click here to join the community</p>
+        </div></a></a>
+        <a href="#" style="text-decoration: none;">
+            <div class="donate">
+            <img class="content_img" src="{% static 'index/images/donateimg.jpg' %}" width="250" height="250">
+            <h1>Live Stream</h1>
+            <p>Join thousands of streamers right now</p>
+        </div></a>
+    </div>
+    &nbsp;
+    <h1>
+        This will be a bottom nav bar :D
+    </h1>
+{% endblock %}

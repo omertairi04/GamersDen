@@ -1,0 +1,14 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+<title>Explore</title>
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <h2><a href="{% url 'post:detail' post.slug %}">{{ post.title }}</a></h2>
+        <p>{{ post.description|truncatechars:40 }}</p>
+        <p>{{ post.date }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

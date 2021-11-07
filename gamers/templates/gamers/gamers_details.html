@@ -1,0 +1,23 @@
+{% extends 'index/base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'gamers/styles/gamers_details.css' %}">
+<title>View your account</title>
+<div class="signup-form">
+    <h1>Hello {{ user.username }}</h1>
+    <form class="gamer_pfp" action="" method="post"> 
+        <div class="change_pfp">
+        <img class="gamer_pfp" src="{{ user.profile.image.url }}" width="50" height="50">
+            <a class="select_newpfp">Select New Profile Pic</a>
+        </div>
+        <div class="social_info">
+            <h2 class="username_field">{{ user.username }}</h2>
+            <p class="email_field">{{ user.email }}</p>
+            <p class="user_bio">{{ user.profile.bio }}</p>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
