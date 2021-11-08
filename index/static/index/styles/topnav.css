@@ -59,26 +59,17 @@
   opacity:0.5;
   border-radius:30px;
 }
-/*
-#post-hover{
-  visibility: hidden;
-}
-
-#create-post:hover ~ #post-hover{
-  visibility: visible;
-  font-size: 10px;
-} */
-
 *{
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 .wrapper .post-icon{
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  margin: 0 5px;
+  /*display: inline-block;*/
+  height: 50px;
+  width: 50px;
+  float: left; 
+  margin: 0 10px;
   overflow: hidden;
   background: #fff;
   border-radius: 50px;
@@ -90,13 +81,14 @@
   width: 200px;
 }
 .wrapper .post-icon .icon {
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  text-align: right;
+  /*display: inline-block;*/
+  float: left;
+  height: 50px;
+  width: 50px;
+  text-align: center;
   border-radius: 50px;
   box-sizing: border-box;
-  line-height: 60px;
+  line-height: 55px;
   transition: all 0.3s ease-out;
 }
 .wrapper .post-icon:nth-child(1):hover .icon{
@@ -104,16 +96,16 @@
 }
 .wrapper .post-icon .icon i{
   font-size: 25px;
-  line-height: 60px;
+  line-height: 55px;
   transition: all 0.3s ease-out;
 }
 .wrapper .post-icon:hover .icon i{
   color: #fff;
 }
 .wrapper .post-icon span{
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 60px;
+  font-size: 15px;
+  font-weight: 200;
+  line-height: 50px;
   margin-left: 10px;
   transition: all 0.3s ease-out;
 }
