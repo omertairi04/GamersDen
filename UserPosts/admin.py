@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from UserPosts.models import UserPosts
+from UserPosts.models import AddGame, UserPosts, VideoUpload
 
-# Register your models here.
 admin.site.register(UserPosts)
+admin.site.register(VideoUpload)
+admin.site.register(AddGame)
+

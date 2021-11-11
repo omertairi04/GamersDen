@@ -24,15 +24,16 @@
             <a href="">Live Stream</a>
             <div class="login">
                 {% if user.is_authenticated %}
-                <div class="wrapper">
+                <a href="/create/">Create</a>
+                <!--<div class="wrapper">
                     <div class="post-icon">
                         <div class="icon">
                             <i class="fas fa-archive fa-lg"></i>
                         </div>
                         <span>Post content</span>
                     </div>
-                <!--<a href="/create-content"><i class="fas fa-archive fa-lg"></i></a>
-                <a href="/create-content/" id="create-post">
+                <a href="/create-post"><i class="fas fa-archive fa-lg"></i></a>
+                <a href="/create-post/" id="create-post">
                     <i class="fas fa-archive fa-lg"></i>
                     <div id="post-hover">
                         Create content
@@ -44,7 +45,7 @@
                     <a href="/account/">Go to account</a>
                     <a href="/update_account/">Update Profile</a>
                     <a href="#">News</a>
-                    <!--<a href="/create-content/">Post Content</a>-->
+                    <!--<a href="/create-post/">Post Content</a>-->
                     <form class="logout-link" action="{% url 'gamers:logout' %}" method="post">
                         {% csrf_token %}
                         <button class="logout" type="submit">Log Out</button>
@@ -57,7 +58,7 @@
                 <a href="{% url 'gamers:login' %}">Login</a></li>
                 <a href="{% url 'gamers:signup' %}">SignUp</a></li>
                 {% endif %}
-        </div>
+        <!--</div> -->
     </div>
     </header>
     <div class="wrapper">

@@ -4,3 +4,4 @@ from . import models
 admin.site.register(models.top_header)
 admin.site.register(models.center_header)
 admin.site.register(models.bottom_header)
+

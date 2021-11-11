@@ -1,0 +1,19 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'user_posts/styles/create.css' %}">
+<div class="create">
+    <div class="post">
+        <img src="{% static 'user_posts/images/post-image.png' %}" width="100" height="100"/>
+        <h1><a href="/create-post/">Create - post</a></h1>
+    </div>
+    <div class="clip">
+        <img src="{% static 'user_posts/images/post-video.png' %}" width="100" height="100"/>
+        <h1><a href="/add-clip/">Add - Clip</a></h1>
+    </div>
+    <div class="game">
+        <img src="{% static 'user_posts/images/game.png' %}" width="100" height="100"/>
+        <h1><a href="/add-a-game/">Add - Game</a></h1>
+    </div>
+</div>
+{% endblock %}

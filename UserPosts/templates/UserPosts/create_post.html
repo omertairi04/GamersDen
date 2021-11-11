@@ -1,0 +1,14 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'user_posts/styles/create-post.css' %}">
+<title>Post Content</title>
+<div class="create-post">
+    <form class="create-post-form" action="{% url 'post:create_post' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Post">
+    </form>
+</div>
+<script src="{% static 'user_posts/scripts/slugify.js' %}"></script>
+{% endblock %}
