@@ -2,9 +2,16 @@
 {% load static %}    
 {% block content %}
 <title>Login</title>
-<form class="site-form" action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Log In">
-</form>
+<div class="Login-Form">
+    <form class="login-form" action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input id="login-btn" type="submit" value="Log In">
+    </form>
+    <div class="signup-small">
+        <small class="text-muted">
+            Don't have an account? <a class="ml-2" href="{% url 'gamers:signup' %}">Sign Up</a>
+        </small>
+    </div>
+</div>
 {% endblock %}

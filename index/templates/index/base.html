@@ -42,7 +42,7 @@
                 <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <p class="username-l">Hi {{ user.username }}</p>
-                    <a href="/account/">Go to account</a>
+                    <a href="{% url 'gamers:account' user.username %}">Go to account</a>
                     <a href="/update_account/">Update Profile</a>
                     <a href="#">News</a>
                     <!--<a href="/create-post/">Post Content</a>-->

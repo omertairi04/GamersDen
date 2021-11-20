@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth import login , logout
+
+from gamers.models import Profile
 from .forms import UserRegisterForm, UserUpdateForm ,ProfileUpdateForm
 from django.contrib import messages
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
@@ -12,7 +14,6 @@ from . import forms
 from django.contrib.auth.decorators import login_required
 
 def signup_view(request):
-    
     if request.method == "POST":
         form = forms.SignUpForm(request.POST , request.FILES)
         if form.is_valid():
@@ -42,8 +43,9 @@ def logout_view(request):
     return redirect('index:index')
 
 @login_required(login_url="gamers:login")
-def gamers_details(request):
+def gamers_details(request,username):
     if request.method =="POST":
+        u = Profile.objects.get(username = username)
         u_form = UserUpdateForm(request.POST ,instance=request.user)
         p_form = ProfileUpdateForm(request.POST ,
                                 request.FILES,

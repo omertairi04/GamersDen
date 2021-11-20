@@ -4,17 +4,17 @@
 {% block content %}
 <title>Sign Up</title>
 <div class="content-section">
-  <form method="POST">
+  <form method="POST" class="POST-class">
       {% csrf_token %}
       <fieldset class="form-group">
-          <legend class="border-bottom mb-4">Join Today</legend>
+          <legend class="border-bottom-mb-4">Join Today</legend>
           {{ form|crispy }}
       </fieldset>
-      <div class="form-group">
-          <button class="btn btn-outline-info" type="submit">Sign Up</button>
+      <div class="signup-btn">
+          <button class="form-group"id="signup-btn" type="submit">Sign Up</button>
       </div>
   </form>
-  <div class="border-top pt-3">
+  <div class="border-top-pt-3">
       <small class="text-muted">
           Already Have An Account? <a class="ml-2" href="{% url 'gamers:login' %}">Sign In</a>
       </small>
