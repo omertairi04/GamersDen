@@ -43,9 +43,10 @@ def logout_view(request):
     return redirect('index:index')
 
 @login_required(login_url="gamers:login")
-def gamers_details(request,username):
-    if request.method =="POST":
-        u = Profile.objects.get(username = username)
+def gamers_details(request , user):
+    if request.method == "GET":
+        u = Profile.objects.get(user = request.user)
+    if request.method == "POST":
         u_form = UserUpdateForm(request.POST ,instance=request.user)
         p_form = ProfileUpdateForm(request.POST ,
                                 request.FILES,
