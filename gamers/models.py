@@ -12,16 +12,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(default="I love Gamers Den!", max_length=100)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    gender = models.CharField(choices=GENDER , default='MALE' , max_length=1)
+    gender = models.CharField(choices=GENDER , default='MALE' , max_length=6)
 
     def __str__(self):
         return f'{self.user.username} Profile'
-    
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    post_save.connect(create_user_profile, sender=User)
 
     def save(self , **kwargs):
         super(Profile, self).save()

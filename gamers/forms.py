@@ -93,4 +93,8 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields=['image', 'bio', 'gender']
-    
+""" NEW FORM """
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields=('user','image','bio','gender')

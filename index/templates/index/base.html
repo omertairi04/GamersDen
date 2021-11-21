@@ -25,20 +25,6 @@
             <div class="login">
                 {% if user.is_authenticated %}
                 <a href="/create/">Create</a>
-                <!--<div class="wrapper">
-                    <div class="post-icon">
-                        <div class="icon">
-                            <i class="fas fa-archive fa-lg"></i>
-                        </div>
-                        <span>Post content</span>
-                    </div>
-                <a href="/create-post"><i class="fas fa-archive fa-lg"></i></a>
-                <a href="/create-post/" id="create-post">
-                    <i class="fas fa-archive fa-lg"></i>
-                    <div id="post-hover">
-                        Create content
-                    </div>
-                </a> -->
                 <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <p class="username-l">Hi {{ user.username }}</p>
