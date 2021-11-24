@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'UserPosts',
     'playpage',
     'index',
-    'gamers',
+    'GUsers',
+#   'gamers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,7 +89,6 @@ DATABASES = {
         'PASSWORD': 'Tech420ded69',
         'PORT' : 3306 , 
         'HOST' : '127.0.0.1',
-        
     }
 }
 
@@ -143,3 +143,6 @@ MEDIA_URL = '/media/'
 AUTH_PROFILE_MODULE = 'gamers.Profile'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'index:index'
+LOGOUT_REDIRECT_URL = 'index:index'

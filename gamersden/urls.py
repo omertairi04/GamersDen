@@ -23,7 +23,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('index.urls')),
-    path('', include('gamers.urls')),
+#   path('', include('gamers.urls')),
+    path('users/', include('django.contrib.auth.urls')),
+    path('users/', include('GUsers.urls')),
+#   path('users/', include('django.contrib.auth.urls')),
+#   path('users/', include('GUsers.urls')),
     path('play/', include('playpage.urls')),
     path('verification/', include('verify_email.urls')),
     path('', include('UserPosts.urls')),

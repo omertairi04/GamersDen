@@ -1,6 +1,5 @@
-from django.contrib.auth.models import User
 from django.http.response import Http404
-from django.shortcuts import render , redirect
+from django.shortcuts import get_object_or_404, render , redirect
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth import login , logout
 from gamers.models import Profile
@@ -8,6 +7,7 @@ from .forms import ProfileForm, UserRegisterForm, UserUpdateForm ,ProfileUpdateF
 from django.contrib import messages
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
 from verify_email.email_handler import send_verification_email
+from django.views.generic import DetailView
 
 #from gamers.models import Gamer
 from . import forms
@@ -42,11 +42,23 @@ def logout_view(request):
         logout(request)
     return redirect('index:index')
 
-@login_required(login_url="gamers:login")
+class ShowProfilePageView(DetailView):
+    model = Profile
+    template_name = 'gamers/gamers_details.html'
+    
+    def get_context_data(self, **kwargs):
+        users = Profile.objects.all()
+        context = super(ShowProfilePageView ,self).get_context_data(**kwargs)
+        page_user = get_object_or_404(Profile ,id=self.kwargs['pk'])
+        context["page_user"] = page_user 
+        return context
+    
+
+"""@login_required(login_url="gamers:login")
 def gamers_details(request , user):
     if request.method == "GET":
         u = Profile.objects.filter(user = request.user)
-        """ NEW Query """
+         NEW Query
         #profile_form = ProfileForm(instance=request.user.profile)
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST ,instance=request.user)
@@ -69,7 +81,7 @@ def gamers_details(request , user):
         #'u_profile':u_profile
     }
 
-    return render(request , 'gamers/gamers_details.html',context)
+    return render(request , 'gamers/gamers_details.html',context) """
 
 def o_profile(request , user):
     # If no such user exists raise 404
