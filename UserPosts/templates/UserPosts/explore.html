@@ -1,16 +1,13 @@
 {% extends 'index/base.html' %}
 {% load static %}
 {% block content %}
-<title>Explore</title>
-<div class="posts">
-    {% for post in posts %}
-    <div class="post">
-        <h2><a href="{% url 'post:detail' post.slug %}">{{ post.title }}</a></h2>
-        <img src="{{ post.thumb.url }}" alt="{{ post.title}}" height="250" width="250">
-        <p>{{ post.description|truncatechars:40 }}</p>
-        <p>{{ post.date }}</p>
-        <p>{{ post.posted_by }}</p>
-    </div>
-    {% endfor %}
-</div>
+<title>Explore Posts</title>
+<ul>
+{% for post in object_list %}
+    <li><a href="{% url 'post:post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }}
+        <!--{{ post.author.first.name }} | {{ post.author.last_name }}
+        {{ post.author.email }}--><br>
+    {{ post.body }}</li>
+{% endfor %}
+</ul>
 {% endblock %}
