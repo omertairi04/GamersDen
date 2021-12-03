@@ -1,0 +1,25 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+<title>Games</title>
+
+{% if game_posts %}
+    <h1>{{ game }} Related Posts</h1>
+    <ul>
+    {% for post in game_posts %}
+        <li><a href="{% url 'post:post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }} 
+        <!-- |- {{ post.game }} -->
+            {% if user.is_authenticated %}
+            - <small><a href="{% url 'post:update-post' post.pk %}">Edit</a></small>
+            <small><a href="{% url 'post:delete-post' post.pk %}">Delete</a></small>
+            {% endif %}
+            <br>
+        {{ post.snippet }}</li>
+        <p>Date Published:{{ post.post_date }}</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h2>Sorry this page does not exits yet</h2>
+{% endif %}
+
+{% endblock %}

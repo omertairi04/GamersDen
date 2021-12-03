@@ -1,10 +1,41 @@
 {% extends 'index/base.html' %}
 {% load static %}
 {% block content %}
-<title>{{ post.pk }}</title>
+<title>{{ post.title }}</title>
 <h1>{{ post.title }}</h1>
 <small>By: {{ post.author }}</small>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <small><a href="{% url 'post:update-post' post.pk %}">Edit</a></small>
+        <small><a href="{% url 'post:delete-post' post.pk %}">Delete</a></small>
+    {% endif %}    
+{% endif %}
 <br/>
-<h3>{{ post.body }}</h3>
+<small>{{ post.post_date }}</small>
+<h3>{{ post.body | safe }}</h3>
+<h5>Game : {{ post.game }}</h5>
 <a href="{% url 'post:explore' %}">Back</a>
+<br><br>
+<hr>
+<br>
+<form action="{% url 'post:like_post' post.pk %}" method="POST">
+    {% csrf_token %}
+        {% if user.is_authenticated %}
+            {% if liked %}
+                <button type="submit", name="post_id"
+                    value="{{ post.id }}">Unlike
+                </button>
+            {% else %}
+                <button type="submit", name="post_id"
+                    value="{{ post.id }}">Like
+                </button>
+            {% endif %}
+        {% else %}
+            <a class="nav-link" href="{% url 'login' %}">Login</a> <small>
+                To like this post
+            </small>
+        {% endif %}
+            - {{ total_likes }} Likes     
+    </form>
+
 {% endblock %}
