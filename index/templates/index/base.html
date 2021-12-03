@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'index/styles/sidepanel.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'gamers/styles/signup.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'gamers/styles/login.css' %}">
-
     <script type="text/javascript" src="{% static 'index/scripts/sidepanel.js' %}"></script>
     <script src="https://kit.fontawesome.com/4f86afdb6c.js" crossorigin="anonymous"></script>
 </head>
@@ -19,13 +18,14 @@
         <div class="topnav">
             <a class="active" href="/">Home</a>
             <a href="/play/">Play Games</a>
-            <a href="/explore/">Explore</a>
+            <!-- DROP DOWN NAV BAR -->
+            <a href="/posts/explore/">Explore</a>
             <a href="">News</a>
             <a href="">Live Stream</a>
             <div class="login">
                 {% if user.is_authenticated %}
-                <p>Welcome {{ user.username }}</p>
-                    <a href="/create/">Create</a>
+                    <a href="/posts/create/">Create</a>
+                    <a href="/users/edit-profile/">Edit Profile</a>
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-link" href="{% url 'GUsers:register' %}">Register</a>

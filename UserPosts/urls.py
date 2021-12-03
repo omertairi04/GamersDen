@@ -1,9 +1,15 @@
 from django.urls import path
-from .views import Explore , PostDetailView
-
+from .views import AddGameView, AddPostView, CreateContent, DeletePostView, Explore, GameView, LikeView , PostDetailView, UpdatePostView
 app_name = "post"
 
 urlpatterns = [
     path('explore/',Explore.as_view() , name="explore"),
-    path('post/<int:pk>/',PostDetailView.as_view(), name="post-detail"),
+    path('<int:pk>/',PostDetailView.as_view(), name="post-detail"),
+    path('add-post/', AddPostView.as_view(),name="create_post"),
+    path('create/', CreateContent,name="create"),
+    path('edit/<int:pk>',UpdatePostView.as_view(),name="update-post"),
+    path('delete/<int:pk>/',DeletePostView.as_view(),name="delete-post"),
+    path('add-game/',AddGameView.as_view(),name="add-game"),
+    path('game/<str:game>/', GameView , name="game-view"),
+    path('like/<int:pk>/', LikeView , name="like_post"),
 ]

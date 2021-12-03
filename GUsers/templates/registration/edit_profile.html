@@ -1,13 +1,13 @@
 {% extends 'index/base.html' %}
 {% load static %}    
 {% block content %}
-<title>Register</title>
+<title>Edit Profile</title>
 <div class="form-group">
     <form  method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button class='btn btn-secondary'>
-            Register</button>
+            Save changes!</button>
     </form>
 </div>
 {% endblock %}

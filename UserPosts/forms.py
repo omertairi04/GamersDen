@@ -1,17 +1,34 @@
 from django import forms
-from django.db.models import fields
 from django.forms import widgets
-from django.forms.fields import ImageField
-from . import models
+from .models import Post , Game
 
-class CreatePost(forms.ModelForm):
-    title = forms.CharField(max_length=50 ,widget=widgets.TextInput(attrs={'class':'title'}))
-    description = forms.CharField(widget=widgets.Textarea(attrs={'class':'description'}))
+choices = Game.objects.all().values_list('name','name')
+
+game_choices = []
+
+for game in choices:
+    game_choices.append(game)
+
+class PostForm(forms.ModelForm):
     class Meta:
-        model = models.UserPosts
-        fields= ['title','slug','description','thumb']  
+        model = Post
+        fields = ('title','game','body') #'author'
         
-class UploadVideo(forms.ModelForm):
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'title-input','placeholder':'Create a title'}),
+#           'author': forms.Select(attrs={'class':'select-author'}),
+            'game': forms.Select(choices=game_choices,attrs={'class':'select-game'}),
+            'body':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a description for your post'}),
+        }
+        
+class EditForm(forms.ModelForm):
     class Meta:
-        model = models.VideoUpload
-        fields = ['title', 'slug','description','videofile']
+        model = Post
+        fields = ('title','body', 'game')
+        
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'title-input','placeholder':'Create a title'}),
+#           'author': forms.Select(attrs={'class':'select-author'}),
+            'body':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a description for your post'}),
+            'game': forms.Select(choices=game_choices,attrs={'class':'select-game'}),
+        }

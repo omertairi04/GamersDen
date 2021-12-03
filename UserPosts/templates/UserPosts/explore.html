@@ -2,12 +2,21 @@
 {% load static %}
 {% block content %}
 <title>Explore Posts</title>
+current user: {{ user.id }}
 <ul>
 {% for post in object_list %}
-    <li><a href="{% url 'post:post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }}
-        <!--{{ post.author.first.name }} | {{ post.author.last_name }}
-        {{ post.author.email }}--><br>
-    {{ post.body }}</li>
+    <a href="{% url 'post:post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }} -
+        <a href="{% url 'post:game-view' post.game %}">{{ post.game }}</a>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                - <small><a href="{% url 'post:update-post' post.pk %}">Edit</a></small>
+                <small><a href="{% url 'post:delete-post' post.pk %}">Delete</a></small>
+            {% endif %} 
+        {% endif %}
+        <br>
+    {{ post.body|safe }}</li>
+    <p>Date Published:{{ post.post_date }}</p>
 {% endfor %}
 </ul>
+
 {% endblock %}
