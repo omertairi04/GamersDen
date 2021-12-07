@@ -1,0 +1,6 @@
+.create-post-form{
+    font-size: 20px;
+}
+#id_slug{
+    visibility: hidden;
+}

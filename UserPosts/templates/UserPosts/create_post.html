@@ -6,12 +6,14 @@
 
     <h1>Create a post</h1>
     <br><br>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ form.media }}
-        <button>Post</button>
-    </form>
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+            <button>Post</button>
+        </form>
+    </div>
 {% else %}
 Log in to create a post
 {% endif %}

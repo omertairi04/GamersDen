@@ -11,10 +11,13 @@
     {% endif %}    
 {% endif %}
 <br/>
-<small>{{ post.post_date }}</small>
+<br>
+<!--{{ post.header_image.url }} <br/>-->
+<img src="{{ post.header_image.url }}" height="600" width="auto">
 <h3>{{ post.body | safe }}</h3>
 <h5>Game : {{ post.game }}</h5>
-<a href="{% url 'post:explore' %}">Back</a>
+<br/>
+<small>{{ post.post_date }}</small>
 <br><br>
 <hr>
 <br>
@@ -37,5 +40,69 @@
         {% endif %}
             - {{ total_likes }} Likes     
     </form>
+<br/><br/>
+ YT COMMENT
+<hr>
+<h2>Comments</h2>
+<br/>
+{% if not post.comments.all %}
+    No comments yet ... <a href="#">Add one</a>
+{% else %}
+    {% for comment in post.comments.all %}
+        <strong>{{ comment.name }} -
+        {{ comment.date_added }}</strong>
+        <br/>
+        {{ comment.body }}
+        <br/>
+        <br/>
+    {% endfor %}
+{% endif %}
+<br/><br/>
+<hr> 
+
+
+<!-- PROFILE -->
+
+<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-2">
+    {% if post.author.profile.profile_pic %}
+        <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start" width="250" height="250">
+    {% else %}
+        <img src="{% static 'GProfile/images/pfp.jpg' %}" class="img-fluid rounded-start" width="250" height="250">
+    {% endif %}  
+    </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.author.username }}</h5>
+          <p class="small text-muted">
+            {% if post.author.profile %}
+            <a href="{% url 'GUsers:show-profile' post.author.profile.id %}">Profile</a> |
+            {% endif %}
+
+            {% if post.author.profile.Website %}
+                <a href="{{ post.author.profile.Website }}">Website</a> |
+            {% endif %}
+
+            {% if post.author.profile.Facebook %}
+                <a href="{{ post.author.profile.Facebook }}">Facebook</a> |
+            {% endif %}
+            {% if  post.author.profile.Twitter %}
+                <a href="{{ post.author.profile.Twitter }}">Twitter</a> |
+            {% endif %}
+            {% if post.author.profile.Instagram %}
+                <a href="{{ post.author.profile.Instagram }}">Instagram</a> |
+            {% endif %}
+            {% if post.author.profile.Steam %}
+                <a href="{{ post.author.profile.Steam }}">Steam</a> |
+            {% endif %}
+
+            {% if post.author.profile.bio %}
+                <p class="card-text">{{ post.author.profile.bio }}</p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+    <title>Create Profile</title>
+
+    <h1>Create Profile Page</h1>
+    <br><br>
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Create Profile Page</button>
+        </form>
+    </div>
+{% else %}
+    Log in to create a post
+{% endif %}
+{% endblock %}
