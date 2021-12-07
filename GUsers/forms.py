@@ -1,6 +1,21 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Profile
+
+class ProfilePageForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio','profile_pic','Website','Facebook','Twitter','Instagram','Steam')
+        
+        widgets = {
+            'bio':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a description for your post'}),
+            'Website':forms.TextInput(attrs={'class':'title-input','placeholder':'Add your Website'}),
+            'Facebook':forms.TextInput(attrs={'class':'title-input','placeholder':'Add your Facebook'}),
+            'Twitter':forms.TextInput(attrs={'class':'title-input','placeholder':'Add your Twitter'}),
+            'Instagram':forms.TextInput(attrs={'class':'title-input','placeholder':'Add your Instagram'}),
+            'Steam':forms.TextInput(attrs={'class':'title-input','placeholder':'Add your Steam'}),
+    }
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'class': 'email-input'}))

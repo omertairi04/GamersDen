@@ -1,0 +1,22 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <title>Edit Profile</title>
+    {% if user.id == profile.user.id %}
+        <h1>Edit Profile</h1>
+        <br><br>
+        <div class="form-group">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button>Update Profile Page</button>
+            </form>
+        </div>
+    {% endif %}
+<br/><br/>
+{% else %}
+    Log in as the user to be able to edit this page
+{% endif %}
+{% endblock %}

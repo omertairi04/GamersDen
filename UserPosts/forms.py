@@ -9,10 +9,11 @@ game_choices = []
 for game in choices:
     game_choices.append(game)
 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title','game','body') #'author'
+        fields = ('title','game','body','header_image') #'author'
         
         widgets = {
             'title':forms.TextInput(attrs={'class':'title-input','placeholder':'Create a title'}),
