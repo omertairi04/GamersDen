@@ -23,7 +23,6 @@
         <div class="topnav">
             <a class="active" href="/">Home</a>
             <a href="/play/">Play Games</a>
-            <!-- DROP DOWN NAV BAR -->
             <a href="/posts/explore/">Explore</a>
             <a href="">News</a>
             <a href="">Live Stream</a>
@@ -31,14 +30,20 @@
                 {% if user.is_authenticated %}
                     <a href="/posts/create/">Create</a>
                     {% if user.profile.id %}
-                        <a href="/users/edit-profile/">SETTINGS</a> <!--SETTINGS-->
-                        <a href="{% url 'GUsers:edit-profile-page' user.profile.id %}">Edit Profile</a>
-                    
-                    {% else %}
-                        <a href="{% url 'GUsers:create-profile-page' %}">Create Profile Page</a>
-
+                        <div id="mySidenav" class="sidenav">
+                            <p style="color:red;">Welcome {{ user.username }}</p>
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <a href="{% url 'GUsers:show-profile' user.profile.id %}">Profile</a>
+                            <a href="/users/edit-profile/">SETTINGS</a> <!--SETTINGS-->
+                            <a href="{% url 'GUsers:edit-profile-page' user.profile.id %}">Edit Profile</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                          </div>
+                          
+                          <!-- Use any element to open the sidenav -->
+                        <span onclick="openNav()">
+                            <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" width="50" height="50">
+                        </span>
                     {% endif %}
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-link" href="{% url 'GUsers:register' %}">Register</a>
 

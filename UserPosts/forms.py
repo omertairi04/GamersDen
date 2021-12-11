@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Post , Game
+from .models import Comment, Post , Game
 
 choices = Game.objects.all().values_list('name','name')
 
@@ -32,4 +32,23 @@ class EditForm(forms.ModelForm):
 #           'author': forms.Select(attrs={'class':'select-author'}),
             'body':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a description for your post'}),
             'game': forms.Select(choices=game_choices,attrs={'class':'select-game'}),
+        }
+
+class CommentForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'rows':'4',    
+        }))
+
+    class Meta:
+        model = Comment
+        fields = ('body',)
+
+class EditCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)
+        
+        widgets = {
+            'body':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a comment'})
         }

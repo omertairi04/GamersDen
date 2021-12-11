@@ -13,7 +13,7 @@ class Profile(models.Model):
     Steam = models.CharField(max_length=255, null=True,blank=True)
     
     def __str__(self):
-        return str(self.user)
+        return f'{self.user.username} Profile' 
 
     def get_absolute_url(self):
         return reverse("index:index")

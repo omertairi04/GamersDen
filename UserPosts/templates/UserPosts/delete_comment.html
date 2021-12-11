@@ -1,0 +1,22 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+    <title>Delete Comment</title>
+
+    {% if user.id == comment.user.pk %}
+    <h1>Delete post</h1>
+    <br><br>
+    <h3>Delete: {{ post.title }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        <strong>Are you sure you want to delete {{ post.title }}</strong>
+        <button>Delete Post!</button>
+    </form>
+    {% else %}
+        You are not allowed to delete this post
+    {% endif %}
+{% else %}
+Log In as {{ post.author }} to delete this post!
+{% endif %}
+{% endblock %}

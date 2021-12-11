@@ -41,28 +41,54 @@
             - {{ total_likes }} Likes     
     </form>
 <br/><br/>
- YT COMMENT
 <hr>
+
+<!-- COMMENTS -->
+
 <h2>Comments</h2>
-<br/>
 {% if not post.comments.all %}
-    No comments yet ... <a href="#">Add one</a>
+<p>Be the first one to comment!</p>
 {% else %}
     {% for comment in post.comments.all %}
         <strong>{{ comment.name }} -
         {{ comment.date_added }}</strong>
-        <br/>
+        <br/> 
         {{ comment.body }}
-        <br/>
-        <br/>
-    {% endfor %}
+        - <a href="{% url 'GUsers:show-profile' post.author.profile.id %}">{{ comment.user.username }}</a>
+    {% if user.id == comment.user.pk %}
+        <small><a href="{% url 'post:edit-comment' comment.pk %}">Edit</a></small>
+        <small><a href="{% url 'post:delete-comment' comment.pk %}">Delete</a></small>
+    {% endif %}
+        <br/><br/>
+{% endfor %}
+{% endif %}
+<br/>
+{% if user.is_authenticated %}
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- display comment -->
+
+                <!-- display form -->
+                <form action="{% url 'post:post-detail' post.pk %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form }}
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<p> Log in to add comments</p>
 {% endif %}
 <br/><br/>
-<hr> 
-
+<hr>
 
 <!-- PROFILE -->
-
 <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-2">

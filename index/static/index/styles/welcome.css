@@ -1,0 +1,20 @@
+.start-css{
+    position: relative;
+}
+
+.headimg {
+    width:1450px;
+    height: auto;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.headtxt{
+    margin-top: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: whitesmoke;
+}

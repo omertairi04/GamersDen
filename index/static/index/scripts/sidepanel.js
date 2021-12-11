@@ -1,9 +1,9 @@
-/* Set the width of the sidebar to 250px (show it) */
+/* Set the width of the side navigation to 250px */
 function openNav() {
-    document.getElementById("mySidepanel").style.width = "210px";
-  }
-  
-  /* Set the width of the sidebar to 0 (hide it) */
-  function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-  } 
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}

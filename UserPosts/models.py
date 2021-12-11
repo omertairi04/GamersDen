@@ -45,11 +45,11 @@ class Post(models.Model):
         return reverse("post:explore")
 
 class Comment(models.Model):
+    user = models.ForeignKey(User , related_name="comments",on_delete=models.CASCADE)
     post = models.ForeignKey(Post , related_name="comments",on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
     body = models.TextField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return '%s - %s' % (self.post.title , self.name)
- 
+        return '%s - %s' % (self.post.title , self.user.username)
+
