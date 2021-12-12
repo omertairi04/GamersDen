@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Comment, Post , Game
+from .models import CATEGORIES, Comment, Post ,Game
 
 choices = Game.objects.all().values_list('name','name')
 
@@ -52,3 +52,16 @@ class EditCommentForm(forms.ModelForm):
         widgets = {
             'body':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a comment'})
         }
+
+class AddGameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('name','description','game_image','category','steam_page')
+        
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'name-input','placeholder':"Your game's name"}),
+            'description':forms.Textarea(attrs={'class':'body-input','placeholder':'Add a description for your game'}),
+            'category': forms.Select(choices=CATEGORIES,attrs={'class':'select-category'}),
+            'steam_page':forms.TextInput(attrs={'class':'name-input','placeholder':"Link your steam game page :p"}),
+        }
+

@@ -2,7 +2,7 @@ from django.forms import fields
 from django.views.generic import ListView, DetailView ,CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required 
 from django.shortcuts import redirect, render , get_object_or_404
-from .forms import CommentForm, EditCommentForm, PostForm , EditForm
+from .forms import AddGameForm, CommentForm, EditCommentForm, PostForm , EditForm
 from django.urls import reverse_lazy , reverse
 from UserPosts.models import Comment, Game, Post
 from django.http import HttpResponseRedirect, request
@@ -17,7 +17,7 @@ def LikeView(request , pk):
         post.likes.add(request.user)
         liked = True
     # ADD JQUERY
-    return HttpResponseRedirect(reverse('post:post-detail' , args=[str(pk)]))
+    return redirect(reverse('post:post-detail' , args=[str(pk)]))
 
 class Explore(ListView):
     model = Post 
@@ -76,9 +76,8 @@ class AddPostView(CreateView):
 
 class AddGameView(CreateView):
     model = Game
+    form_class = AddGameForm
     template_name = "UserPosts/add_game.html"
-    fields = '__all__'
-
     
 class UpdatePostView(UpdateView):
     model = Post
@@ -103,3 +102,20 @@ class DeleteCommentView(DeleteView):
     model = Comment
     template_name = "UserPosts/delete_comment.html"
     success_url = reverse_lazy('post:explore')
+
+class PlayPageView(ListView):
+    model = Game
+    template_name = 'UserPosts/playpage.html'
+    ordering = ['-date_added']
+    
+def GameLikeView(request , pk):
+    game = get_object_or_404(Game , id=request.POST.get('game_id'))
+    liked = False
+    if game.likes.filter(id=request.user.id).exists():
+        game.likes.remove(request.user)
+        liked = False
+    else:
+        game.likes.add(request.user)
+        liked = True
+    # ADD JQUERY
+    return redirect(reverse('post:game' , args=[str(pk)]))

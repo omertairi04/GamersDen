@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'ckeditor',
     'UserPosts',
-    'playpage',
+#    'playpage',
     'index',
     'GUsers',
 #   'gamers',
@@ -84,12 +84,8 @@ WSGI_APPLICATION = 'gamersden.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'gamersden',
-        'USER':'root',
-        'PASSWORD': 'Tech420ded69',
-        'PORT' : 3306 , 
-        'HOST' : '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME' : os.path.join(BASE_DIR / 'db.sqlite3')
     }
 }
 

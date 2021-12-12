@@ -1,6 +1,20 @@
 {% extends 'index/base.html' %}
 {% load static %}    
 {% block content %}
-<title>Play</title>
-<h1>Welcome to Gamers den we will be launching soon</h1>
+<title>Games</title>
+<div class="game-posts">
+    {% for game in object_list %}
+    <img src="{{ game.game_image.url }}" height="250" width="350">
+    <br/>
+    {{ game.name }} - {{ user.username }} 
+        <h5>{{ game.category }}</h5>
+        {% if user.is_authenticated %}
+            <small>Edit</small>
+            <small>Delete</small>
+        {% endif %}
+        <br>
+        {{ game.description|safe }}<br/>
+        Date Released : {{ game.date_added }}<br/><br/>
+    {% endfor %}
+</div>
 {% endblock %}

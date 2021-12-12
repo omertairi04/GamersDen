@@ -1,0 +1,20 @@
+{% extends 'index/base.html' %}
+{% load static %}    
+{% block content %}
+<title>Play</title>
+<div class="game-posts">
+    {% for game in object_list %}
+    <img src="{{ game.game_image.url }}" height="250" width="350">
+    <br/>
+    {{ game.name }} - {{ user.username }}
+        {{ game.category }}
+        {% if user.is_authenticated %}
+            <small>Edit</small>
+            <small>Delete</small>
+        {% endif %}
+        <br>
+        {{ game.description|safe }}<br/>
+        Date Released : {{ game.date_added }}<br/><br/>
+    {% endfor %}
+</div>
+{% endblock %}
