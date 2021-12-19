@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import AddGameView, AddPostView, CreateContent, DeleteCommentView, DeletePostView, Explore, GameView, LikeView, PlayPageView , PostDetailView, UpdateCommentView, UpdatePostView
+from .views import AddGameView, AddPostView, CreateContent, DeleteCommentView, DeleteGameView, DeletePostView, Explore, GameView, LikeView, PlayPageView , PostDetailView, UpdateCommentView, UpdateGameView, UpdatePostView
+
 app_name = "post"
 
 urlpatterns = [
@@ -14,5 +15,7 @@ urlpatterns = [
     path('like/<int:pk>/', LikeView , name="like_post"),
     path('edit/comment/<int:pk>', UpdateCommentView.as_view(),name="edit-comment"),
     path('delete/comment/<int:pk>', DeleteCommentView.as_view(),name="delete-comment"),
-    path('games/', PlayPageView.as_view(), name="playpage")
+    path('games/', PlayPageView.as_view(), name="playpage"),
+    path('edit-game/<int:pk>',UpdateGameView.as_view(),name="update-game"),
+    path('delete-game/<int:pk>/',DeleteGameView.as_view(),name="delete-game"),
 ]

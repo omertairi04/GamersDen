@@ -6,11 +6,11 @@
 
     <h1>Add a post</h1>
     <br><br>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button>Add game</button>
-    </form>
+         {{ form.as_p }}
+        <button type="submit">Add Game</button>
+      </form>
 {% else %}
 Log in to create a post
 {% endif %}

@@ -1,39 +1,25 @@
 {% extends './base.html' %}
 {% load static %}
 {% block content %}
-
-    <title>Home Page</title>
-    <img class="header_img" src="{% static 'index/images/headimg.jpg' %}" width="1334" height="710" 
-        style="padding-top: 5px;">
-    <hr class="header_hr">
-
-    &nbsp;&nbsp;
-
-    <div class="content">
-        <a href="play/" style="text-decoration: none;">
-            <div class="play">
-            <img class="content_img" src="{% static 'index/images/playimg.jpg' %}" width="260" height="250">
-            <h1>Play</h1>
-            <p>Click here to join the fun!</p>
-            &nbsp;
-        </div></a>
-        &nbsp;
-        <a href="signup/" style="text-decoration: none;">
-            <div class="join">
-            <img class="content_img" src="{% static 'index/images/joinus.jpg' %}" width="265" height="250">
-            <h1>Join Us</h1>
-            <p>Click here to join the community</p>
-            &nbsp;
-        </div></a></a>
-        <a href="#" style="text-decoration: none;">
-            <div class="donate">
-            <img class="content_img" src="{% static 'index/images/donateimg.jpg' %}" width="260" height="250">
-            <h1>Live Stream</h1>
-            <p>Join thousands of streamers right now</p>
-        </div></a>
+<title>Home</title>
+<div class="header-img">
+    <img class="h-img" src="{% static 'Index/images/headimg.jpg' %}" width="1349" height="auto">
+    <div class="text">Join the world of gamers</div>
+</div>
+<br/><br/>
+<div class="threebox">
+    <div class="join">
+        <img src="{% static 'index/images/join.jpg' %}" width="270" height="250"><hr>
+        <a href="{% url 'GUsers:register' %}">Click here to join us</a>
     </div>
-    &nbsp;
-    <h1>
-        This will be a bottom nav bar :D
-    </h1>
+    <div class="explore">
+        <img src="{% static 'index/images/explore.jpg' %}" width="270" height="250"><hr>
+        <a href="{% url 'post:explore' %}">See the community posts</a>
+    </div>
+    <div class="play">
+        <img src="{% static 'index/images/play.jpg' %}" width="270" height="250"><hr>
+        <a href="{% url 'post:playpage' %}">See published games</a>
+    </div>
+</div>
+<br/><br/>
 {% endblock %}

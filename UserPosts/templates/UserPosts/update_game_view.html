@@ -1,0 +1,22 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == game.published_by.id %}
+        <title>Edit</title>
+
+        <h1>Edit your Game Post</h1>
+        <br><br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+            <button>Update</button>
+        </form>
+    {% else %}
+        You are not allowed to Update This Post!
+    {% endif %}
+{% else %}
+You are not allowed to Update This Post!
+{% endif %}
+{% endblock %}

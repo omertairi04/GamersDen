@@ -1,0 +1,22 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+    <title>Delete Post</title>
+
+    {% if user.id == game.published_by.id %}
+    <h1>Delete Game</h1>
+    <br><br>
+    <h3>Delete: {{ game.name }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        <strong>Are you sure you want to delete {{ game.name }}</strong>
+        <button>Delete Post!</button>
+    </form>
+    {% else %}
+        You are not allowed to delete this post
+    {% endif %}
+{% else %}
+Log In as {{ post.author }} to delete this post!
+{% endif %}
+{% endblock %}

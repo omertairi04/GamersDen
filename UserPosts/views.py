@@ -2,7 +2,7 @@ from django.forms import fields
 from django.views.generic import ListView, DetailView ,CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required 
 from django.shortcuts import redirect, render , get_object_or_404
-from .forms import AddGameForm, CommentForm, EditCommentForm, PostForm , EditForm
+from .forms import AddGameForm, CommentForm, EditCommentForm, EditGameForm, PostForm , EditForm
 from django.urls import reverse_lazy , reverse
 from UserPosts.models import Comment, Game, Post
 from django.http import HttpResponseRedirect, request
@@ -31,7 +31,7 @@ class Explore(ListView):
         return context
 
 def GameView(request , game): # game = <str:game>
-    game_posts = Post.objects.filter(game = game.replace('-' ,' '))
+    game_posts = Game.objects.filter(game = game.replace('-' ,' '))
     return render(request, 'UserPosts/games.html', {'game':game.title().replace('-' ,' ') 
                                                     , 'game_posts':game_posts})
 
@@ -79,6 +79,22 @@ class AddGameView(CreateView):
     form_class = AddGameForm
     template_name = "UserPosts/add_game.html"
     
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.published_by = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+    
+class UpdateGameView(UpdateView):
+    model = Game
+    form_class = EditGameForm
+    template_name = "UserPosts/update_game_view.html"
+    
+class DeleteGameView(DeleteView):
+    model = Game
+    template_name = "UserPosts/delete_game.html"
+    success_url = reverse_lazy('post:playpage')
+
 class UpdatePostView(UpdateView):
     model = Post
     form_class = EditForm
