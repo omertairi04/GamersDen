@@ -2,24 +2,9 @@
 {% load static %}
 {% block content %}
 <title>Home</title>
-<div class="header-img">
-    <img class="h-img" src="{% static 'Index/images/headimg.jpg' %}" width="1349" height="auto">
-    <div class="text">Join the world of gamers</div>
-</div>
-<br/><br/>
-<div class="threebox">
-    <div class="join">
-        <img src="{% static 'index/images/join.jpg' %}" width="270" height="250"><hr>
-        <a href="{% url 'GUsers:register' %}">Click here to join us</a>
-    </div>
-    <div class="explore">
-        <img src="{% static 'index/images/explore.jpg' %}" width="270" height="250"><hr>
-        <a href="{% url 'post:explore' %}">See the community posts</a>
-    </div>
-    <div class="play">
-        <img src="{% static 'index/images/play.jpg' %}" width="270" height="250"><hr>
-        <a href="{% url 'post:playpage' %}">See published games</a>
-    </div>
-</div>
-<br/><br/>
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}</h1>
+{% else %}
+<h1>You need to be <a href="{% url 'login' %}">logged in</a> to access this page</h1>
+{% endif %}
 {% endblock %}

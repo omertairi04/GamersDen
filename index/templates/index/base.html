@@ -22,8 +22,8 @@
     <header class="wrapper">
         <div class="topnav">
             <a class="active" href="/">Home</a>
-            <a href="/posts/games/">Games</a>
-            <a href="/posts/explore/">Explore</a>
+            <a href="{% url 'post:playpage' %}">Games</a>
+            <a href="{% url 'post:explore' %}">Explore</a>
             <a href="">News</a>
             <a href="">Live Stream</a>
             <div class="login">
@@ -41,7 +41,11 @@
                           
                           <!-- Use any element to open the sidenav -->
                         <span onclick="openNav()">
+                            {% if user.profile.profile_pic %}
                             <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" width="50" height="50">
+                            {% else %}
+                            <img src="{% static 'GProfile/images/pfp.jpg' %}" class="rounded-circle" width="50" height="50">
+                            {% endif %}
                         </span>
                     {% endif %}
                 {% else %}
