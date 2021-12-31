@@ -4,9 +4,10 @@
 <title>Play</title>
 <div class="game-posts">
     {% for game in object_list %}
-        <img src="{{ game.game_image.url }}" height="250" width="350">
+        <img src="{{ game.game_image.url }}" height="350" width="450">
         <br/>
-        {{ game.name }} - {{ game.published_by }} - 
+        <a href="{% url 'post:game-detail' game.pk %}">{{ game.name }}</a> 
+        - {{ game.published_by }} - 
             {{ game.category }}
             {% if user.is_authenticated %}
                 {% if user.id == game.published_by.id %}
@@ -15,7 +16,7 @@
                 {% endif %}
             {% endif %}
             <br>
-            {{ game.description|safe }}<br/>
+            {{ game.description|truncatewords:8 }}<br/>
             Date Released : {{ game.date_added }}<br/><br/>
     {% endfor %}
 </div>

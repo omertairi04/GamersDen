@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models.fields.related import ForeignKey
 from django.urls import reverse
 from datetime import datetime , date
-from ckeditor.fields import RichTextField
 
 CATEGORIES = (
     ('Shooter','Shooter'),
@@ -21,7 +20,7 @@ class Game(models.Model):
     published_by = models.ForeignKey(User , related_name="published_by",on_delete=models.CASCADE)
     steam_page = models.CharField(max_length=255 , blank=True ,null=True)
     date_added = models.DateField(auto_now_add=True)
-    likes = models.ManyToManyField(User , related_name="liked_games")
+    likes = models.ManyToManyField(User , related_name="game_posts")
     
     def __str__(self):
         return self.name
@@ -42,10 +41,10 @@ class Post(models.Model):
     author = models.ForeignKey(User , on_delete=models.CASCADE)
     header_image = models.ImageField(null=False , blank=False ,upload_to="user/images", default="UserPosts/static/user_posts/images/game.png")
     game = models.CharField(max_length=255,default='Minecraft')
-    body = RichTextField(blank=True , null=True)
+    body = models.TextField(blank=True , null=True)
     # body = models.TextField()
     post_date = models.DateField(auto_now_add=True)
-    likes = models.ManyToManyField(User , related_name="game_posts")
+    likes = models.ManyToManyField(User , related_name="explore_posts")
     
     def total_likes(self):
         return self.likes.count()

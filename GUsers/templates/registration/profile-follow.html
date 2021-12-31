@@ -1,0 +1,13 @@
+{% extends 'index/base.html' %}
+{% load static %}    
+{% block content %}
+<form action="{% url 'GUsers:followers_count' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" value="{{ current_user }}" readonly/>
+    <input type="hidden" name="follower" value="{{ user.username }}" readonly/>
+    
+    <button type="submit" class="btn profile-edit-btn">
+        Follow
+    </button>
+  </form>
+{% endblock %}

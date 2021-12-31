@@ -1,0 +1,48 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+<title>{{ game.title }}</title>
+<h1>{{ game.title }}</h1>
+<small>By: {{ game.published_by }}</small>
+
+{% if user.is_authenticated %}
+    {% if user.id == game.published_by.id %}
+    <p>You are the game publisher </p>
+    {% else %}
+    <p>You are not the publisher</p>
+    {% endif %}
+{% endif %}
+
+<img src="{{ game.game_image.url }}" height="auto" width="1352">
+<p>{{ game.description | safe }}</p>
+<h5>Publisher: {{ game.published_by }}</h5>
+<br/>
+<small>{{ game.date_added }}</small>
+<br/><br/>
+<hr width="auto">
+<br/>
+<form action="{% url 'post:like_game' game.pk %}" method="POST">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit" , name="game_id" 
+                value="{{ game.id }}" class="btn btn-danger btn-sm">
+                Unlike
+            </button>
+            {% else %}
+            <button type="submit" , name="game_id" 
+                value="{{ game.id }}" class="btn btn-primary btn-sm">
+                Like
+            </button> 
+        {% endif %}
+    {% else %}
+        <small><a href="{% url 'login' %}">Login</a> in to like this game</small>
+    {% endif %}
+    - {{ total_likes }} Likes
+</form>
+<br/><br/>
+
+
+
+{% endblock %}
