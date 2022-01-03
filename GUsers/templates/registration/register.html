@@ -1,13 +1,52 @@
-{% extends 'index/base.html' %}
-{% load static %}    
-{% block content %}
-<title>Register</title>
-<div class="form-group">
-    <form  method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class='btn btn-secondary'>
-            Register</button>
-    </form>
-</div>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'GProfile/styles/register.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body class="body">
+    <div class="form-group">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.username }} <br>
+            {{ form.username.errors }}
+            <br/>
+            {{ form.email }} <br>
+            <!--Email errors--> 
+            <h3>Enter your password</h3>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+            <p style="color: red;">Your password should'nt be less than 8 characters long!</p>
+            <h3>Re-enter your password</h3>
+            {{ form.password2 }}<br/><br/>
+            {{ form.password2.errors }}
+            <p>By clicking register you agree to our guidelines</p>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
+
+<!--
+    {{ form.non_field_errors }}
+            {{ form.username }} <br>
+            {{ form.username.errors }}
+            <br/>
+            {{ form.email }} <br>
+             Email errors 
+            <h3>Enter your password</h3>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+            <p style="color: red;">Your password should'nt be less than 8 characters long!</p>
+            <h3>Re-enter your password</h3>
+            {{ form.password2 }}<br/><br/>
+            {{ form.password2.errors }}
+            <p>By clicking register you agree to our guidelines</p>
+-->

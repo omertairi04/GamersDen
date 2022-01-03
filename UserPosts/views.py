@@ -2,7 +2,7 @@ from django.forms import fields
 from django.views.generic import ListView, DetailView ,CreateView,UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required 
 from django.shortcuts import redirect, render , get_object_or_404
-from . forms import AddGameForm, CommentForm, EditCommentForm, EditGameForm, PostForm , EditForm
+from . forms import AddGameForm, CommentForm, EditCommentForm, EditGameForm, GameCommentForm, PostForm , EditForm
 from django.urls import reverse_lazy , reverse
 from UserPosts.models import Comment, Game, Post
 from django.http import HttpResponseRedirect, request
@@ -39,6 +39,8 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "UserPosts/post_detail.html"
     form = CommentForm
+
+    # def post() == if request.method == "POST":
     def post(self, request, pk,*args, **kwargs):
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -46,7 +48,7 @@ class PostDetailView(DetailView):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
-            return HttpResponseRedirect(reverse('post:post-detail' , args=[str(pk)]))
+            return redirect(reverse('post:post-detail' , args=[str(pk)]))
     
     def get_context_data(self, *args, **kwargs):
         game_menu = Game.objects.all()
@@ -65,17 +67,18 @@ class PostDetailView(DetailView):
 class GameDetailView(DetailView):
     model = Game
     template_name = "UserPosts/game_detail.html"
+    form = GameCommentForm
 
-    form = CommentForm
-    def game(self, request, pk,*args, **kwargs):
-        form = CommentForm(request.POST)
+    def post(self, request, pk,*args, **kwargs):
+        form = GameCommentForm(request.POST)
         if form.is_valid():
             game = self.get_object()
             form.instance.user = request.user
             form.instance.game = game
             form.save()
             return redirect(reverse('post:game-detail' , args=[str(pk)]))
-    
+
+
     def get_context_data(self, *args, **kwargs):
         game_menu = Game.objects.all()
         context = super(GameDetailView , self).get_context_data(*args, **kwargs)

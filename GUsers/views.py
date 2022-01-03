@@ -1,13 +1,14 @@
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordChangeView
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.urls.base import reverse
 from django.views.generic import DetailView , CreateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm , UserChangeForm
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 
 from GUsers.forms import EditProfileForm, ProfilePageForm, SignUpForm
 from GUsers.models import Profile
@@ -42,12 +43,12 @@ class CreateProfilePageView(CreateView):
     
     
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-    
+
 class UserRegisterView(generic.CreateView):
     form_class = SignUpForm
     template_name = 'registration/register.html' 
     success_url = reverse_lazy('login')
- 
+
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html' 

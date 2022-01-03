@@ -70,3 +70,12 @@ class Comment(models.Model):
     def __str__(self):
         return '%s - %s' % (self.post.title , self.user.username)
 
+
+class GameComment(models.Model):
+    user = models.ForeignKey(User ,related_name="gamecomments" ,on_delete=models.CASCADE)
+    game = models.ForeignKey(Game , related_name="gamecomments", on_delete=models.CASCADE)
+    body = models.TextField(max_length=255 , default=None)
+    date_added = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return '%s - %s' % (self.game.name , self.user.username)
