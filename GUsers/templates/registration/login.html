@@ -15,6 +15,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
+            <p>Don't have an account?<a href="{% url 'GUsers:register' %}">Register</a> here</p>
             <tr>
                 <td>&nbsp;</td>
                 <td><input type="submit" value="Submit"></td>
