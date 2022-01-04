@@ -19,24 +19,21 @@ class ProfilePageForm(forms.ModelForm):
     }
 
 class SignUpForm(UserCreationForm):
+    password1 = forms.CharField(
+            label='Password', widget=forms.PasswordInput(attrs={'class':'pass-input'}))
+    password2 = forms.CharField(
+            label='Confirm Password(again)', widget=forms.PasswordInput(attrs={'class':'pass-input'}))
     email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'class': 'email-input', 'placeholder':'Enter your email'}))
-    checkbox = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'checkbox'}))
+    checkbox = forms.BooleanField(label="I agree to the rules of @GamersDen",widget=forms.CheckboxInput(attrs={'class':'checkbox'}))
+
+    help_text = {
+                'email':None,
+                'username':None,
+        }
 
     class Meta:
         model = User
         fields = ('username','email','password1','password2','checkbox')
-
-        widgets = {
-            'username':forms.TextInput(attrs={'class':'username-input','placeholder':'Enter a unique username'}),
-            'password1':forms.PasswordInput(attrs={'class':'password-input','placeholder':'Enter your passowrd'}),
-            'password2':forms.PasswordInput(attrs={'class':'password-input','placeholder':'Enter your passowrd'}),
-        }
-
-    def __init__(self,*args, **kwargs):
-        super(SignUpForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].widget.attrs['class'] = 'pass-input'
-        self.fields['password2'].widget.attrs['class'] = 'pass-input'
-
 
 class EditProfileForm(UserChangeForm):
     """ first_name = forms.CharField(required=False , widget=forms.TextInput(attrs={'class':'first_name'}))

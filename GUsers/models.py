@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete=models.CASCADE , null=True)
-    bio = models.TextField()
+    bio = models.TextField(null=True , blank=True , default=None)
     profile_pic = models.ImageField(null=True,blank=True, upload_to ='user/profile_pics')
     Website = models.CharField(max_length=255, null=True,blank=True)
     Facebook = models.CharField(max_length=255, null=True,blank=True)

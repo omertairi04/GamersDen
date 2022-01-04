@@ -57,15 +57,16 @@
 
             <a class="nav-link" href="{% url 'login' %}">Login</a>
         {% endif %}
+    </div>
         </div>
         <br/>
         <div class="start-css"> 
             <img class="headimg" src="{% static 'index/images/indeximg.jpg' %}">
             <div class="headtxt">
-                Join the world of gamers today
+                Join the world of gamers <a href="{% url 'login' %}">today</a>!
             </div>
-        </div>  
-    </div>
+        </div> 
+        <hr class="hr1">
 
     <div class="threebox">
         <div class="join">

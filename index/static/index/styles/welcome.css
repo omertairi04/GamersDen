@@ -3,18 +3,24 @@
 }
 
 .headimg {
-    width:1450px;
+    margin-top: -25px;
+    width: 1241px;
     height: auto;
     margin-bottom: 15px;
     opacity: 0.8;
 }
 
 .headtxt{
-    margin-top: 380px;
+    margin-top: 290px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 25px;
     color: whitesmoke;
+}
+.hr1 {
+    margin-top: -15px;
+    width: 5px;
+    color: white;
 }

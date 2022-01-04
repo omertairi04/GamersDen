@@ -1,12 +1,25 @@
-{% extends 'index/base.html' %}
-{% load static %}    
-{% block content %}
-<title>Login</title>
-<div class="form-group">
-    <form  method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button class='btn btn-secondary'>Login</button>
-    </form>
-</div>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'GProfile/styles/login.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body class="body">
+    <div class="form-group">
+        <h2>Log In</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>    
+        </form>
+    </div>
+</body>
+</html>
