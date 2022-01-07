@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from GUsers.forms import EditProfileForm, ProfilePageForm, SignUpForm
 from GUsers.models import Profile
 
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'

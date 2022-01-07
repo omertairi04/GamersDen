@@ -12,6 +12,10 @@ class Profile(models.Model):
     Instagram = models.CharField(max_length=255, null=True,blank=True)
     Steam = models.CharField(max_length=255, null=True,blank=True)
     
+    following = models.ManyToManyField(
+        "self",blank=True,related_name="followers",symmetrical=False,
+    )
+
     def __str__(self):
         return f'{self.user.username} Profile' 
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     "verify_email.apps.VerifyEmailConfig",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
